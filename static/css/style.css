@@ -196,6 +196,8 @@ figcaption {
 
 figcaption b { color: var(--ink); font-weight: 650; }
 
+figure.narrow { max-width: 730px; margin: 30px auto 8px; }
+
 /* ---------- equation callout -------------------------------------------- */
 
 .eq {
