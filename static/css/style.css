@@ -203,45 +203,6 @@ figcaption {
 
 figcaption b { color: var(--ink); font-weight: 650; }
 
-/* ---------- sample image grids ------------------------------------------ */
-
-.grouplabel {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin: 22px 0 10px;
-}
-
-.grouplabel:first-child { margin-top: 6px; }
-
-.samples { display: grid; gap: 10px; }
-.samples.eight { grid-template-columns: repeat(8, 1fr); }
-.samples.four  { grid-template-columns: repeat(4, 1fr); }
-
-.samples figure { margin: 0; }
-
-.samples img {
-  border-radius: 6px;
-  border: 1px solid var(--rule);
-  aspect-ratio: 13 / 10;
-  object-fit: cover;
-}
-
-.samples figcaption {
-  margin-top: 6px;
-  font-size: 12.5px;
-  line-height: 1.35;
-  text-align: center;
-  color: var(--ink-faint);
-}
-
-@media (max-width: 880px) { .samples.eight { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 560px) {
-  .samples.eight, .samples.four { grid-template-columns: repeat(2, 1fr); }
-}
-
 /* ---------- method steps ------------------------------------------------ */
 
 .steps {
@@ -433,45 +394,6 @@ tr.ours .lead-col { font-weight: 650; color: var(--accent); }
 
 .copy:hover { background: rgba(255,255,255,.18); color: #fff; }
 
-/* ---------- supplementary index ----------------------------------------- */
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
-
-.card {
-  display: block;
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-  padding: 19px 21px;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color .12s ease, background .12s ease, transform .12s ease;
-}
-
-.card:hover { border-color: var(--accent); background: var(--accent-wash); transform: translateY(-1px); }
-
-.card h4 { margin: 0 0 5px; font-size: 16px; font-weight: 650; color: var(--accent); letter-spacing: -.01em; }
-.card p  { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
-
-@media (max-width: 720px) { .cards { grid-template-columns: 1fr; } }
-
-.pending {
-  display: inline-block;
-  font-size: 11.5px;
-  font-weight: 650;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--warm);
-  background: var(--warm-wash);
-  border-radius: 5px;
-  padding: 2px 8px;
-  margin-left: 8px;
-  vertical-align: 2px;
-}
-
 /* ---------- footer ------------------------------------------------------ */
 
 footer {
@@ -484,15 +406,3 @@ footer {
 
 footer p { margin: 0 0 10px; }
 footer a { color: var(--ink-soft); }
-
-.backlink {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 15px;
-  text-decoration: none;
-  color: var(--accent);
-  margin-bottom: 26px;
-}
-
-.backlink:hover { text-decoration: underline; }

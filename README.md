@@ -7,12 +7,11 @@ Static HTML, no build step. Deployed with GitHub Pages.
 
 ```
 .
-├── index.html            # main project page
-├── supplementary.html    # supplementary material (the paper points readers here)
+├── index.html            # the project page
 ├── static/
-│   ├── css/style.css     # single stylesheet shared by both pages
-│   ├── images/           # figures cropped from the manuscript at 600 dpi
-│   └── pdfs/             # manuscript PDF
+│   ├── css/style.css
+│   ├── images/           # figures rendered from the Overleaf vector sources
+│   └── pdfs/             # supplementary PDF (the paper points readers here)
 └── .nojekyll             # tell GitHub Pages to serve files as-is
 ```
 
@@ -46,12 +45,11 @@ python -m http.server 8000
       `github.com/kimyoungwook7/GAZEMM`, matching the paper.
 - [ ] Update the BibTeX entry once the paper is accepted.
 
-## Supplementary — two formats, one source
+## Supplementary
 
-Both come from `Template_supplemental_v0.2.tex` in the Overleaf project:
-
-- **`supplementary.html`** — read in the browser, deep-linkable, no download
-- **`static/pdfs/GazeMM_supplementary.pdf`** — the paper's own typesetting, 6 pages
+`static/pdfs/GazeMM_supplementary.pdf` — 6 pages, built from
+`Template_supplemental_v0.2.tex` in the Overleaf project. The PDF is the only form;
+there is deliberately no HTML version to keep in sync.
 
 Coverage of the five items the paper promises the project page will host:
 
@@ -78,9 +76,7 @@ revision marks — the body text is untouched, only the colour definitions are o
 Then `pdflatex` → `bibtex` → `pdflatex` ×2, and copy the result over
 `static/pdfs/GazeMM_supplementary.pdf`.
 
-**When the `.tex` changes, both formats need updating** — the HTML does not regenerate
-from the source. Rebuild the PDF as above and hand-apply the same numbers to
-`supplementary.html`.
+When the `.tex` changes, rebuild the PDF as above — that is the only step.
 
 ## Hosting large files
 
