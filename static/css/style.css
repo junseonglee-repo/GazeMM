@@ -165,6 +165,20 @@ p:last-child { margin-bottom: 0; }
 
 a { color: var(--accent); }
 
+/* Justified body text. Hyphenation is on so word spacing does not open up into
+   rivers -- it needs the lang attribute on <html>, which index.html sets.
+   Scoped to section/footer so the centred masthead is untouched. */
+section p,
+figcaption,
+footer p {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+/* Display math centres itself; leave it alone. */
+.eq p { text-align: center; hyphens: none; }
+
 code {
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   font-size: .88em;
