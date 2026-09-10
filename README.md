@@ -40,7 +40,6 @@ python -m http.server 8000
       rather wait for the decision.
 - [ ] Confirm the venue line in `index.html` (`<div class="venue">`) — currently
       "Submitted to ICASSP 2027".
-- [ ] Add the arXiv link and remove `aria-disabled="true"` from that button.
 - [ ] Check the code repo link. It currently points at
       `github.com/kimyoungwook7/GAZEMM`, matching the paper.
 - [ ] Update the BibTeX entry once the paper is accepted.
