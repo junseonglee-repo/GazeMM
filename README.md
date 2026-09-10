@@ -46,10 +46,14 @@ python -m http.server 8000
       `github.com/kimyoungwook7/GAZEMM`, matching the paper.
 - [ ] Update the BibTeX entry once the paper is accepted.
 
-## Supplementary
+## Supplementary — two formats, one source
 
-`supplementary.html` is a port of `Template_supplemental_v0.2.tex` (Overleaf project),
-covering all five items the paper promises the project page will host:
+Both come from `Template_supplemental_v0.2.tex` in the Overleaf project:
+
+- **`supplementary.html`** — read in the browser, deep-linkable, no download
+- **`static/pdfs/GazeMM_supplementary.pdf`** — the paper's own typesetting, 6 pages
+
+Coverage of the five items the paper promises the project page will host:
 
 | Paper says | Where it lives |
 | --- | --- |
@@ -59,8 +63,24 @@ covering all five items the paper promises the project page will host:
 | Hyperparameter analyses | § C, Tables S9 ($k$) and S10 ($c$) |
 | Extended results | § C, Tables S2–S8 |
 
-**Keep it in sync with the `.tex`.** If the supplemental source changes, the numbers here
-have to change too — nothing regenerates automatically.
+### Rebuilding the PDF
+
+The published PDF is built from a patched copy that neutralises the co-authors' red
+revision marks — the body text is untouched, only the colour definitions are overridden:
+
+```latex
+\usepackage[table]{xcolor}
+\definecolor{red}{rgb}{0,0,0}        % <- added
+\definecolor{orange}{rgb}{0,0,0}     % <- added
+\definecolor{darkgreen}{rgb}{0,0,0}  % <- added
+```
+
+Then `pdflatex` → `bibtex` → `pdflatex` ×2, and copy the result over
+`static/pdfs/GazeMM_supplementary.pdf`.
+
+**When the `.tex` changes, both formats need updating** — the HTML does not regenerate
+from the source. Rebuild the PDF as above and hand-apply the same numbers to
+`supplementary.html`.
 
 ## Hosting large files
 
