@@ -46,12 +46,21 @@ python -m http.server 8000
       `github.com/kimyoungwook7/GAZEMM`, matching the paper.
 - [ ] Update the BibTeX entry once the paper is accepted.
 
-## Filling in the supplementary
+## Supplementary
 
-The camera-ready says *"readers are referred to the project page"* for dataset statistics,
-baseline configurations, training settings, hyperparameter analyses and extended results.
-`supplementary.html` has a section per item; each unfinished cell is marked with a
-`<span class="pending">` badge. Search the file for `TODO` to find them all.
+`supplementary.html` is a port of `Template_supplemental_v0.2.tex` (Overleaf project),
+covering all five items the paper promises the project page will host:
+
+| Paper says | Where it lives |
+| --- | --- |
+| Dataset statistics | § A, Table S1 + Figs. S1–S2 |
+| Baseline configurations | § B, per-method |
+| Training settings | § B, proposed method |
+| Hyperparameter analyses | § C, Tables S9 ($k$) and S10 ($c$) |
+| Extended results | § C, Tables S2–S8 |
+
+**Keep it in sync with the `.tex`.** If the supplemental source changes, the numbers here
+have to change too — nothing regenerates automatically.
 
 ## Hosting large files
 

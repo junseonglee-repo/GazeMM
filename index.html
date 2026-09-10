@@ -153,7 +153,7 @@
         <div class="k">FRR at FAR&nbsp;=&nbsp;$10^{-3}$, down from 45.70% for the strongest baseline</div>
       </div>
       <div class="stat">
-        <div class="v">5<small>&thinsp;/&thinsp;5</small></div>
+        <div class="v">5<small>/5</small></div>
         <div class="k">Feature extractors improved by dropping in manifold matching &mdash; no retraining, no architecture change</div>
       </div>
     </div>
@@ -176,6 +176,17 @@
       identity's enrollment set as a low-dimensional affine subspace and measure how far the query falls
       <em>off</em> that subspace.
     </p>
+
+    <figure style="margin:26px 0 30px">
+      <img src="static/images/framework.png"
+           alt="Framework diagram. Enrollment: multi-gaze NIR images pass a Laplacian quality gate and a shared CNN to produce embeddings, from which an identity-specific affine subspace is built. Authentication: a query embedding is compared against that subspace by point-to-manifold distance, then cohort-normalized to accept or reject.">
+      <figcaption>
+        <b>GazeMM at enrollment and authentication.</b> Both paths share the same CNN weights, and neither uses
+        iris segmentation or polar normalization. Enrollment collapses an identity's multi-gaze embeddings into
+        the affine subspace $M_i = (\mu_i, U_i)$; authentication scores a query by its point-to-manifold distance
+        $d_i$ and normalizes it against cohort statistics before thresholding.
+      </figcaption>
+    </figure>
 
     <div class="steps">
       <div class="step">

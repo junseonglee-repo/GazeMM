@@ -64,11 +64,12 @@ body {
 }
 
 h1.title {
-  font-size: clamp(30px, 5.2vw, 46px);
-  line-height: 1.18;
+  font-size: clamp(28px, 4.4vw, 41px);
+  line-height: 1.2;
   font-weight: 700;
   letter-spacing: -.02em;
   margin: 0 0 6px;
+  text-wrap: balance;
 }
 
 h1.title .acro { color: var(--accent); }
@@ -171,6 +172,15 @@ p:last-child { margin-bottom: 0; }
 
 a { color: var(--accent); }
 
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: .88em;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: .08em .38em;
+}
+
 /* ---------- figures ----------------------------------------------------- */
 
 figure { margin: 0 0 8px; }
@@ -192,6 +202,45 @@ figcaption {
 }
 
 figcaption b { color: var(--ink); font-weight: 650; }
+
+/* ---------- sample image grids ------------------------------------------ */
+
+.grouplabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 22px 0 10px;
+}
+
+.grouplabel:first-child { margin-top: 6px; }
+
+.samples { display: grid; gap: 10px; }
+.samples.eight { grid-template-columns: repeat(8, 1fr); }
+.samples.four  { grid-template-columns: repeat(4, 1fr); }
+
+.samples figure { margin: 0; }
+
+.samples img {
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+  aspect-ratio: 13 / 10;
+  object-fit: cover;
+}
+
+.samples figcaption {
+  margin-top: 6px;
+  font-size: 12.5px;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 880px) { .samples.eight { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 560px) {
+  .samples.eight, .samples.four { grid-template-columns: repeat(2, 1fr); }
+}
 
 /* ---------- method steps ------------------------------------------------ */
 
@@ -270,7 +319,7 @@ figcaption b { color: var(--ink); font-weight: 650; }
   font-variant-numeric: tabular-nums;
 }
 
-.stat .v small { font-size: 17px; font-weight: 600; margin-left: 1px; }
+.stat .v small { font-size: 17px; font-weight: 600; letter-spacing: 0; }
 .stat .k { font-size: 14px; color: var(--ink-soft); margin-top: 7px; line-height: 1.45; }
 
 @media (max-width: 720px) { .stats { grid-template-columns: 1fr; } }
