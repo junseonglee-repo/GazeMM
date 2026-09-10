@@ -93,13 +93,14 @@
 <section>
   <div class="wrap">
     <figure>
-      <img src="static/images/fig1_matching.png"
-           alt="PCA projection comparing point-to-point matching, which assigns the query to the wrong identity, against the proposed manifold matching, which assigns it correctly.">
+      <img src="static/images/framework.png"
+           alt="Overview of GazeMM. Enrollment passes an identity's multi-gaze NIR images through a Laplacian quality gate and a shared CNN, then builds an identity-specific affine subspace from the resulting embeddings. Authentication encodes the query the same way, measures its point-to-manifold distance to the enrolled subspace, cohort-normalizes that distance and accepts or rejects.">
       <figcaption>
-        <b>Off-angle acquisition breaks point-to-point matching.</b> For the same query $q$ from ID&nbsp;1
-        (star, CASIA-Iris-Degradation, PCA projection), the nearest <em>individual</em> enrollment embedding
-        belongs to ID&nbsp;2 &mdash; gaze has pushed the genuine points away. GazeMM measures the orthogonal
-        residual to each identity's affine subspace $M_i$ (shaded) instead, and recovers the correct identity.
+        <b>GazeMM in full.</b> Enrollment collapses an identity's multi-gaze embeddings into the affine subspace
+        $M_i = (\mu_i, U_i)$. Authentication encodes the query through the same weights, scores it by its
+        orthogonal distance $d_i$ to that subspace, and normalizes against cohort statistics before applying one
+        global threshold. No gaze estimation, no geometric rectification, and no iris segmentation or polar
+        normalization anywhere in the pipeline.
       </figcaption>
     </figure>
   </div>
@@ -148,17 +149,17 @@
 
     <div class="tight">
       <p>A final cohort-based normalization rescales the residual so that one global threshold works across
-        queries and identities. No gaze estimation, no geometric rectification, no iris segmentation or polar
-        normalization.</p>
+        queries and identities.</p>
     </div>
 
     <figure style="margin-top:30px">
-      <img src="static/images/framework.png"
-           alt="Framework diagram. Enrollment passes multi-gaze NIR images through a quality gate and a shared CNN to build an identity-specific affine subspace; authentication scores a query by its point-to-manifold distance and cohort-normalizes it before accepting or rejecting.">
+      <img src="static/images/fig1_matching.png"
+           alt="PCA projection comparing point-to-point matching, which assigns the query to the wrong identity, against the proposed manifold matching, which assigns it correctly.">
       <figcaption>
-        <b>Enrollment and authentication share one encoder.</b> Enrollment builds $M_i$ from an identity's
-        multi-gaze embeddings; authentication scores a query by its point-to-manifold distance $d_i$ and
-        normalizes it against cohort statistics before thresholding.
+        <b>What that buys.</b> For the same query $q$ from ID&nbsp;1 (star, CASIA-Iris-Degradation, PCA
+        projection), the nearest <em>individual</em> enrollment embedding belongs to ID&nbsp;2 &mdash; gaze has
+        pushed the genuine points away. Measured against the subspaces $M_i$ (shaded) instead, the residual
+        recovers the correct identity.
       </figcaption>
     </figure>
   </div>
