@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Supplementary Material &mdash; GazeMM</title>
+<meta name="description" content="Supplementary material for GazeMM: dataset statistics, baseline configurations, training settings, hyperparameter analyses and extended results.">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👁️</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/css/style.css">
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+    options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="masthead" style="padding:56px 0 36px">
+  <div class="wrap">
+    <div class="venue">Supplementary Material</div>
+    <h1 class="title" style="font-size:clamp(26px,4vw,36px)"><span class="acro">GazeMM</span>: Robust Off-Angle Iris Recognition via Gaze Manifold Matching</h1>
+    <nav class="links">
+      <a class="btn ghost" href="index.html">
+        <svg viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        Back to project page
+      </a>
+      <a class="btn" href="https://github.com/kimyoungwook7/GAZEMM">
+        <svg viewBox="0 0 496 512"><path d="M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z"/></svg>
+        Code
+      </a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ====================================================================== -->
+<!-- CONTENTS                                                                -->
+<!-- ====================================================================== -->
+<section>
+  <div class="wrap">
+    <h2>Contents</h2>
+    <div class="cards">
+      <a class="card" href="#datasets"><h4>A. Dataset statistics</h4><p>The twelve evaluation datasets, their subsets and identity counts.</p></a>
+      <a class="card" href="#baselines"><h4>B. Baseline configurations</h4><p>Implementations, weights and settings used for each comparison method.</p></a>
+      <a class="card" href="#training"><h4>C. Training settings</h4><p>Optimizer, schedule, augmentation and the exact protocol folds.</p></a>
+      <a class="card" href="#hparams"><h4>D. Hyperparameter analyses</h4><p>Subspace dimension $k$ and quality-filter strictness $c$.</p></a>
+      <a class="card" href="#extended"><h4>E. Extended results</h4><p>Per-dataset generality and frontal breakdowns.</p></a>
+      <a class="card" href="#repro"><h4>F. Reproducing the results</h4><p>Environment, entry points and expected runtime.</p></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ====================================================================== -->
+<!-- A. DATASETS                                                             -->
+<!-- ====================================================================== -->
+<section id="datasets">
+  <div class="wrap">
+    <h2>A. Dataset statistics</h2>
+
+    <p class="tight">
+      All twelve datasets were obtained through official public or authorized-access channels under their
+      providers' license agreements. Identities are defined at the eye level, so the left and right eyes of the
+      same subject are treated as different classes.
+    </p>
+
+    <p class="tcap"><b>Table S1.</b> Evaluation datasets. <span class="pending">Fill in</span></p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr>
+            <th class="lead-col">Dataset</th>
+            <th class="lead-col">Subset</th>
+            <th>Acquisition</th>
+            <th>Subjects</th>
+            <th>Identities (eyes)</th>
+            <th>Images</th>
+            <th>Resolution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="cat" colspan="7">Off-angle</td></tr>
+          <tr><td class="lead-col">EyeMovement</td><td class="lead-col">&mdash;</td><td>Off-angle</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">OpenEDS</td><td class="lead-col">&mdash;</td><td>Off-angle</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">CASIA-Iris-Degradation</td><td class="lead-col">&mdash;</td><td>Off-angle</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">CASIA-Iris-Africa</td><td class="lead-col">&mdash;</td><td>Off-angle</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+
+          <tr><td class="cat" colspan="7">Frontal</td></tr>
+          <tr><td class="lead-col">CASIA v1.0</td><td class="lead-col">&mdash;</td><td>Frontal</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">CASIA-Iris-Interval</td><td class="lead-col">&mdash;</td><td>Frontal</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">CASIA-Iris-Thousand</td><td class="lead-col">&mdash;</td><td>Frontal</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">CASIA-Iris-Lamp</td><td class="lead-col">&mdash;</td><td>Frontal</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">PolyU Iris DB</td><td class="lead-col">&mdash;</td><td>Frontal</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">MMU-v1</td><td class="lead-col">&mdash;</td><td>Frontal</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">IIITD Contact Lens Iris</td><td class="lead-col">Cogent</td><td>Frontal</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">IIITD Contact Lens Iris</td><td class="lead-col">Vista</td><td>Frontal</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">TODO: fill in subject / identity / image counts and native resolutions, and note any subset selection rules applied per dataset.</p>
+  </div>
+</section>
+
+
+<!-- ====================================================================== -->
+<!-- B. BASELINES                                                            -->
+<!-- ====================================================================== -->
+<section id="baselines">
+  <div class="wrap">
+    <h2>B. Baseline configurations</h2>
+
+    <p class="tight">
+      All methods use the authors' released implementations with their recommended or default configurations.
+      Publicly released pretrained models are used without retraining. The exceptions are UE-UGCL and Maxout-BA,
+      for which trained weights are unavailable; these are trained on the same training folds as GazeMM,
+      <em>without</em> the external-data pretraining used in their original settings.
+    </p>
+
+    <p class="tcap"><b>Table S2.</b> Comparison methods. <span class="pending">Fill in</span></p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr>
+            <th class="lead-col">Method</th>
+            <th class="lead-col">Family</th>
+            <th class="lead-col">Weights</th>
+            <th class="lead-col">Implementation / commit</th>
+            <th class="lead-col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="lead-col">WAHET</td><td class="lead-col">Classical</td><td class="lead-col">n/a</td><td class="lead-col">&ndash;</td><td class="lead-col">Default configuration</td></tr>
+          <tr><td class="lead-col">USITv3</td><td class="lead-col">Classical</td><td class="lead-col">n/a</td><td class="lead-col">&ndash;</td><td class="lead-col">Default configuration</td></tr>
+          <tr><td class="lead-col">OSIRIS</td><td class="lead-col">Classical</td><td class="lead-col">n/a</td><td class="lead-col">&ndash;</td><td class="lead-col">Default configuration</td></tr>
+          <tr><td class="lead-col">HDBIF</td><td class="lead-col">Hybrid</td><td class="lead-col">Released</td><td class="lead-col">&ndash;</td><td class="lead-col">&ndash;</td></tr>
+          <tr><td class="lead-col">WCI</td><td class="lead-col">Hybrid</td><td class="lead-col">Released</td><td class="lead-col">&ndash;</td><td class="lead-col">&ndash;</td></tr>
+          <tr><td class="lead-col">DGR</td><td class="lead-col">Deep</td><td class="lead-col">Released</td><td class="lead-col">&ndash;</td><td class="lead-col">&ndash;</td></tr>
+          <tr><td class="lead-col">UE-UGCL</td><td class="lead-col">Deep</td><td class="lead-col">Retrained</td><td class="lead-col">&ndash;</td><td class="lead-col">No external-data pretraining</td></tr>
+          <tr><td class="lead-col">Maxout-BA</td><td class="lead-col">Deep</td><td class="lead-col">Retrained</td><td class="lead-col">&ndash;</td><td class="lead-col">No external-data pretraining</td></tr>
+          <tr><td class="lead-col">ArcIris</td><td class="lead-col">Deep</td><td class="lead-col">Released</td><td class="lead-col">&ndash;</td><td class="lead-col">&ndash;</td></tr>
+          <tr><td class="lead-col">TripletIris</td><td class="lead-col">Deep</td><td class="lead-col">Released</td><td class="lead-col">&ndash;</td><td class="lead-col">&ndash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">TODO: add repository URLs, commit hashes and any deviation from default settings (input size, segmentation model, matching threshold).</p>
+  </div>
+</section>
+
+
+<!-- ====================================================================== -->
+<!-- C. TRAINING                                                             -->
+<!-- ====================================================================== -->
+<section id="training">
+  <div class="wrap">
+    <h2>C. Training settings</h2>
+
+    <h3>Architecture and objective</h3>
+    <p class="tight">
+      An ImageNet-pretrained ResNet-34 produces a 512-dimensional embedding, $L_2$-normalized before matching.
+      Input NIR periocular images are padded to a square with the aspect ratio preserved, resized to
+      224&times;224 and replicated across three channels. No iris segmentation or polar normalization is applied.
+      The network is optimized with the soft-margin batch-hard triplet loss:
+    </p>
+    <div class="eq">
+      <p>$$\ell = \mathrm{softplus}\big(d(a,p) - d(a,n)\big) = \log\big(1 + e^{\,d(a,p) - d(a,n)}\big)$$</p>
+    </div>
+
+    <p class="tcap"><b>Table S3.</b> Training and inference hyperparameters. <span class="pending">Fill in</span></p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th class="lead-col">Setting</th><th class="lead-col">Value</th></tr></thead>
+        <tbody>
+          <tr><td class="lead-col">Backbone</td><td class="lead-col">ResNet-34, ImageNet-pretrained</td></tr>
+          <tr><td class="lead-col">Embedding dimension $D$</td><td class="lead-col">512 ($L_2$-normalized)</td></tr>
+          <tr><td class="lead-col">Input resolution</td><td class="lead-col">224 &times; 224, 3-channel replicated</td></tr>
+          <tr><td class="lead-col">Loss</td><td class="lead-col">Batch-hard triplet, soft-margin (softplus)</td></tr>
+          <tr><td class="lead-col">Optimizer</td><td class="lead-col">Adagrad</td></tr>
+          <tr><td class="lead-col">Learning rate</td><td class="lead-col">&ndash; <span class="pending">TODO</span></td></tr>
+          <tr><td class="lead-col">Batch composition (P &times; K)</td><td class="lead-col">&ndash; <span class="pending">TODO</span></td></tr>
+          <tr><td class="lead-col">Epochs / early stopping</td><td class="lead-col">&ndash; <span class="pending">TODO</span></td></tr>
+          <tr><td class="lead-col">Augmentation</td><td class="lead-col">&ndash; <span class="pending">TODO</span></td></tr>
+          <tr><td class="lead-col">Quality filter strictness $c$</td><td class="lead-col">2.0</td></tr>
+          <tr><td class="lead-col">Subspace dimension $k$</td><td class="lead-col">3</td></tr>
+          <tr><td class="lead-col">Hardware</td><td class="lead-col">&ndash; <span class="pending">TODO</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Evaluation protocol</h3>
+    <p class="tight">
+      Subject-disjoint 2-fold cross-validation with three fixed random seeds. GazeMM, UE-UGCL and Maxout-BA are
+      trained on each training fold, with 15% of the training identities held out for validation; the checkpoint
+      with the lowest validation EER is selected for testing. All remaining methods are evaluated on the same
+      test folds. GazeMM uses leave-one-out identity-specific affine subspaces for matching, while comparison
+      methods follow their original matching protocols. Quality-filter statistics are computed once per dataset
+      over all images.
+    </p>
+  </div>
+</section>
+
+
+<!-- ====================================================================== -->
+<!-- D. HYPERPARAMETERS                                                      -->
+<!-- ====================================================================== -->
+<section id="hparams">
+  <div class="wrap">
+    <h2>D. Hyperparameter analyses</h2>
+
+    <h3>Subspace dimension $k$</h3>
+    <p class="tight">
+      $k$ controls how much intra-class variation the affine subspace is allowed to absorb. Too small and
+      gaze-induced variation still leaks into the residual; too large and the subspace starts absorbing
+      impostor directions as well, eroding the genuine/impostor margin. The effective dimension is capped at
+      $\min(k,\,N-1,\,D)$.
+    </p>
+    <p class="tcap"><b>Table S4.</b> Effect of $k$, averaged over the four off-angle datasets (%). <span class="pending">Fill in</span></p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th class="lead-col">$k$</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>8</th></tr></thead>
+        <tbody>
+          <tr><td class="lead-col">EER</td><td>&ndash;</td><td>&ndash;</td><td><b>0.23</b></td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">FRR @ FAR&nbsp;=&nbsp;$10^{-3}$</td><td>&ndash;</td><td>&ndash;</td><td><b>8.18</b></td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Quality filter strictness $c$</h3>
+    <p class="tight">
+      The Laplacian-variance threshold is set in the log domain from the median and MAD, so $c$ scales how many
+      standard-deviation-equivalents below the median a frame may fall before rejection. Larger $c$ keeps more
+      frames; smaller $c$ trades recall for input quality and raises FTE.
+    </p>
+    <div class="eq">
+      <p>$$\text{keep} \iff \log f \;\ge\; \mathrm{median}(\log f) - c \cdot 1.4826 \cdot \mathrm{MAD}(\log f)$$</p>
+    </div>
+    <p class="tcap"><b>Table S5.</b> Effect of $c$, averaged over the four off-angle datasets (%). <span class="pending">Fill in</span></p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th class="lead-col">$c$</th><th>1.0</th><th>1.5</th><th>2.0</th><th>2.5</th><th>3.0</th><th>&infin; (off)</th></tr></thead>
+        <tbody>
+          <tr><td class="lead-col">EER</td><td>&ndash;</td><td>&ndash;</td><td><b>0.23</b></td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">FTE</td><td>&ndash;</td><td>&ndash;</td><td><b>2.8</b></td><td>&ndash;</td><td>&ndash;</td><td>0.0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Number of enrollment views $N$</h3>
+    <p class="tight">
+      Since the subspace is estimated from the enrollment set, its quality depends on how many gaze directions
+      are enrolled. <span class="pending">TODO</span> &mdash; report EER as a function of $N$, and state the minimum
+      $N$ at which manifold matching still beats point-to-point matching.
+    </p>
+  </div>
+</section>
+
+
+<!-- ====================================================================== -->
+<!-- E. EXTENDED RESULTS                                                     -->
+<!-- ====================================================================== -->
+<section id="extended">
+  <div class="wrap">
+    <h2>E. Extended results</h2>
+
+    <h3>Per-dataset generality across feature extractors</h3>
+    <p class="tight">
+      Table&nbsp;3 in the paper reports the average over the four off-angle datasets. The per-dataset breakdown
+      is given below.
+    </p>
+    <p class="tcap"><b>Table S6.</b> Point-to-point vs. proposed matching per feature extractor, per off-angle dataset (EER, %). <span class="pending">Fill in</span></p>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2" class="lead-col">Feature extractor</th>
+            <th colspan="2" class="group">EM</th>
+            <th colspan="2" class="group">OED</th>
+            <th colspan="2" class="group">Deg</th>
+            <th colspan="2" class="group">Afr</th>
+          </tr>
+          <tr><th>P2P</th><th>Ours</th><th>P2P</th><th>Ours</th><th>P2P</th><th>Ours</th><th>P2P</th><th>Ours</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="lead-col">UE-UGCL</td><td>10.70</td><td>&ndash;</td><td>11.61</td><td>&ndash;</td><td>13.16</td><td>&ndash;</td><td>12.45</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">Maxout-BA</td><td>15.10</td><td>&ndash;</td><td>27.62</td><td>&ndash;</td><td>18.64</td><td>&ndash;</td><td>27.16</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">ArcIris</td><td>15.64</td><td>&ndash;</td><td>16.20</td><td>&ndash;</td><td>16.54</td><td>&ndash;</td><td>17.69</td><td>&ndash;</td></tr>
+          <tr><td class="lead-col">TripletIris</td><td>14.94</td><td>&ndash;</td><td>11.98</td><td>&ndash;</td><td>17.98</td><td>&ndash;</td><td>17.60</td><td>&ndash;</td></tr>
+          <tr class="ours"><td class="lead-col">ResNet-34 (Ours)</td><td>&ndash;</td><td><b>0.00</b></td><td>&ndash;</td><td><b>0.57</b></td><td>&ndash;</td><td><b>0.25</b></td><td>&ndash;</td><td><b>0.10</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Per-dataset frontal results</h3>
+    <p class="tcap"><b>Table S7.</b> EER and FTE on the eight frontal datasets (%). <span class="pending">Fill in</span></p>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr>
+            <th class="lead-col">Method</th>
+            <th>CASIA v1.0</th><th>Interval</th><th>Thousand</th><th>Lamp</th>
+            <th>PolyU</th><th>MMU-v1</th><th>IIITD-Cogent</th><th>IIITD-Vista</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="lead-col">&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Additional qualitative examples</h3>
+    <p class="tight">
+      <span class="pending">TODO</span> &mdash; PCA projections for the remaining off-angle datasets, plus failure
+      cases where the residual distance still selects the wrong identity.
+    </p>
+  </div>
+</section>
+
+
+<!-- ====================================================================== -->
+<!-- F. REPRODUCING                                                          -->
+<!-- ====================================================================== -->
+<section id="repro">
+  <div class="wrap">
+    <h2>F. Reproducing the results</h2>
+    <p class="tight">
+      Source code is available at
+      <a href="https://github.com/kimyoungwook7/GAZEMM">github.com/kimyoungwook7/GAZEMM</a>.
+      <span class="pending">TODO</span> &mdash; document the environment (Python / PyTorch / CUDA versions), the
+      expected dataset directory layout, the entry-point commands for training and evaluation, and approximate
+      runtime per fold. Note that the iris datasets themselves cannot be redistributed here and must be obtained
+      from their original providers.
+    </p>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap">
+    <a class="backlink" href="index.html">&larr; Back to project page</a>
+    <p><b>Ethics.</b> This study was conducted on previously collected human-subject data from publicly released
+      iris datasets, in accordance with their respective license agreements. No additional ethical approval was
+      required for this secondary analysis.</p>
+    <p>Page design adapted from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project
+      page, released under a
+      <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.</p>
+  </div>
+</footer>
+
+</body>
+</html>
