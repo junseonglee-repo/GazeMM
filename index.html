@@ -90,7 +90,7 @@
       <img src="static/images/framework.png"
            alt="Overview of GazeMM. Enrollment passes an identity's multi-gaze NIR images through a Laplacian quality gate and a shared CNN, then builds an identity-specific affine subspace from the resulting embeddings. Authentication encodes the query the same way, measures its point-to-manifold distance to the enrolled subspace, cohort-normalizes that distance and accepts or rejects.">
       <figcaption>
-        <b>GazeMM in full.</b> Enrollment collapses an identity's multi-gaze embeddings into the affine subspace
+        <b>Overall framework.</b> Enrollment collapses an identity's multi-gaze embeddings into the affine subspace
         $M_i = (\mu_i, U_i)$. Authentication encodes the query through the same weights, scores it by its
         orthogonal distance $d_i$ to that subspace, and normalizes against cohort statistics before applying one
         global threshold. No gaze estimation, no geometric rectification, and no iris segmentation or polar
