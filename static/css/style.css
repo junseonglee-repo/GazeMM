@@ -74,13 +74,6 @@ h1.title {
 
 h1.title .acro { color: var(--accent); }
 
-.subtitle {
-  font-size: clamp(16px, 2.4vw, 20px);
-  color: var(--ink-soft);
-  font-weight: 400;
-  margin: 0 0 30px;
-}
-
 .authors {
   font-size: 17.5px;
   line-height: 2.05;
@@ -203,40 +196,6 @@ figcaption {
 
 figcaption b { color: var(--ink); font-weight: 650; }
 
-/* ---------- method steps ------------------------------------------------ */
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 6px 0 8px;
-}
-
-.step {
-  background: var(--panel);
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-  padding: 20px 20px 18px;
-}
-
-.step .n {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 25px; height: 25px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 11px;
-}
-
-.step h4 { margin: 0 0 7px; font-size: 16.5px; font-weight: 650; letter-spacing: -.01em; }
-.step p  { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
-
-@media (max-width: 720px) { .steps { grid-template-columns: 1fr; } }
-
 /* ---------- equation callout -------------------------------------------- */
 
 .eq {
@@ -248,42 +207,6 @@ figcaption b { color: var(--ink); font-weight: 650; }
   margin: 22px 0;
   overflow-x: auto;
 }
-
-.eq .note {
-  font-size: 14px;
-  color: var(--ink-soft);
-  margin: -4px 0 14px;
-}
-
-/* ---------- headline stats ---------------------------------------------- */
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 4px 0 30px;
-}
-
-.stat {
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-  padding: 20px 22px;
-  background: var(--page);
-}
-
-.stat .v {
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -.03em;
-  color: var(--accent);
-  line-height: 1.1;
-  font-variant-numeric: tabular-nums;
-}
-
-.stat .v small { font-size: 17px; font-weight: 600; letter-spacing: 0; }
-.stat .k { font-size: 14px; color: var(--ink-soft); margin-top: 7px; line-height: 1.45; }
-
-@media (max-width: 720px) { .stats { grid-template-columns: 1fr; } }
 
 /* ---------- tables ------------------------------------------------------ */
 
